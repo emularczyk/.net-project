@@ -15,7 +15,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Web_Forum.Models;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Http;
+=======
+>>>>>>> c782a94 (Login and register functionality and fix database and models)
 
 namespace Web_Forum.Areas.Identity.Pages.Account
 {
@@ -120,7 +123,10 @@ namespace Web_Forum.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+<<<<<<< HEAD
                     HttpContext.Session.SetString("UserName", user.UserName);
+=======
+>>>>>>> c782a94 (Login and register functionality and fix database and models)
                     return LocalRedirect(returnUrl);
                 }
                 else
@@ -133,6 +139,7 @@ namespace Web_Forum.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+<<<<<<< HEAD
 
         public string LoggedUser()
         {
@@ -145,5 +152,7 @@ namespace Web_Forum.Areas.Identity.Pages.Account
                 return null;
             }
         }
+=======
+>>>>>>> c782a94 (Login and register functionality and fix database and models)
     }
 }

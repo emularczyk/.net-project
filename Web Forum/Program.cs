@@ -18,6 +18,7 @@ builder.Services.AddDbContext<IdentityApplicationDbContext>(options => options.U
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+<<<<<<< HEAD
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
@@ -27,6 +28,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+=======
+>>>>>>> c782a94 (Login and register functionality and fix database and models)
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,13 +40,24 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+<<<<<<< HEAD
+=======
+//app.UseHttpsRedirection();
+>>>>>>> c782a94 (Login and register functionality and fix database and models)
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+<<<<<<< HEAD
 app.UseSession();
+=======
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+>>>>>>> c782a94 (Login and register functionality and fix database and models)
 
 app.MapRazorPages();
 

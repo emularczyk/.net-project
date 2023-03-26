@@ -138,6 +138,7 @@ namespace Web_Forum.Areas.Identity.Pages.Account
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
+<<<<<<< HEAD
 
         public string LoggedUser()
         {
@@ -150,5 +151,7 @@ namespace Web_Forum.Areas.Identity.Pages.Account
                 return null;
             }
         }
+=======
+>>>>>>> c782a94 (Login and register functionality and fix database and models)
     }
 }
