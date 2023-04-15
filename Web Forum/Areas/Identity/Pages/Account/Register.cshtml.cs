@@ -139,6 +139,9 @@ namespace Web_Forum.Areas.Identity.Pages.Account
             }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
 
         public string LoggedUser()
         {
@@ -151,7 +154,10 @@ namespace Web_Forum.Areas.Identity.Pages.Account
                 return null;
             }
         }
+<<<<<<< HEAD
 =======
 >>>>>>> c782a94 (Login and register functionality and fix database and models)
+=======
+>>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
     }
 }

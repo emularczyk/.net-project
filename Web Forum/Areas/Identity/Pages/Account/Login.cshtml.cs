@@ -16,9 +16,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Web_Forum.Models;
 <<<<<<< HEAD
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Http;
 =======
 >>>>>>> c782a94 (Login and register functionality and fix database and models)
+=======
+using Microsoft.AspNetCore.Http;
+>>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
 
 namespace Web_Forum.Areas.Identity.Pages.Account
 {
@@ -124,9 +128,13 @@ namespace Web_Forum.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
 <<<<<<< HEAD
+<<<<<<< HEAD
                     HttpContext.Session.SetString("UserName", user.UserName);
 =======
 >>>>>>> c782a94 (Login and register functionality and fix database and models)
+=======
+                    HttpContext.Session.SetString("UserName", user.UserName);
+>>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
                     return LocalRedirect(returnUrl);
                 }
                 else
@@ -140,6 +148,9 @@ namespace Web_Forum.Areas.Identity.Pages.Account
             return Page();
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
 
         public string LoggedUser()
         {
@@ -152,7 +163,10 @@ namespace Web_Forum.Areas.Identity.Pages.Account
                 return null;
             }
         }
+<<<<<<< HEAD
 =======
 >>>>>>> c782a94 (Login and register functionality and fix database and models)
+=======
+>>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
     }
 }
