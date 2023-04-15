@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Web_Forum.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Web_Forum.Areas.Identity.Pages.Account
 {
@@ -119,6 +120,7 @@ namespace Web_Forum.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    HttpContext.Session.SetString("UserName", user.UserName);
                     return LocalRedirect(returnUrl);
                 }
                 else
@@ -130,6 +132,18 @@ namespace Web_Forum.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        public string LoggedUser()
+        {
+            if (HttpContext.Session.GetString("UserName") != null)
+            {
+                return HttpContext.Session.GetString("UserName");
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
