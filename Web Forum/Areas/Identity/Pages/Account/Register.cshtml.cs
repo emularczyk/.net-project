@@ -138,5 +138,17 @@ namespace Web_Forum.Areas.Identity.Pages.Account
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
+
+        public string LoggedUser()
+        {
+            if (HttpContext.Session.GetString("UserName") != null)
+            {
+                return HttpContext.Session.GetString("UserName");
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

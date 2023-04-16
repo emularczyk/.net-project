@@ -1,0 +1,10 @@
+﻿@page "/"
+@using Web_Forum.Views.Home;
+@using Microsoft.AspNetCore.Http
+@model IndexModel
+
+
+<div class="text-center">
+    <h1 class="display-4">@HttpContext.Session.GetString("UserName")</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
