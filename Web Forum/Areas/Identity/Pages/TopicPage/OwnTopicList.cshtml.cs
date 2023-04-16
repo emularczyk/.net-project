@@ -52,7 +52,7 @@ namespace Web_Forum.Views.Home.TopicPage
         public async Task<RedirectToPageResult> OnPostAsync(int id)
         {
             if (HttpContext.Session.GetString("UserName") == null)
-            {
+        {
                 return RedirectToPage("../Account/Login");
             }
 

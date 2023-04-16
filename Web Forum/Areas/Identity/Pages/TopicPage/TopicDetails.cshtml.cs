@@ -36,7 +36,7 @@ namespace Web_Forum.Views.Home.TopicPage
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return NotFound();
             }
