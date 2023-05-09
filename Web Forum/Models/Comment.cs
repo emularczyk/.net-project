@@ -9,7 +9,7 @@ namespace Web_Forum.Models
         [Required]
         public string content { get; set; }
         [Required]
-        public int user_id { get; set; }
+        public string user_id { get; set; }
         [Required]
         public int topic_id { get; set; }
     }

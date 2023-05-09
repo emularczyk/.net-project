@@ -1,0 +1,60 @@
+﻿@page "/OwnTopicList"
+@model Web_Forum.Views.Home.TopicPage.OwnTopicList
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Own Topics</h1>
+
+
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Content
+            </th>
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Topics != null) {
+            foreach(var topic in Model.Topics)
+            {
+                <tr>
+                    <td width="20%">
+                        @topic.title
+                    </td>
+                    <td width="40%">
+                        @topic.content
+                    </td>
+                    <td width="20%">
+                        <form method="get" asp-page="./AddTopic">
+                            <input type="hidden" name="id" value="@topic.id" />
+                            <button type="submit" class="nav-link text-dark">Edit</button>
+                        </form>
+                    </td>
+                    <td width="20%">
+                        <form id="OnDelete" method="post">
+                            <input type="hidden" name="id" value="@topic.id" />
+                            <button id="OnDelete" type="submit" class="nav-link text-dark">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<div>
+    <button class="nav-link text-dark" onclick="location.href='./AddTopic'">Add topic</button>
+</div>
+
+

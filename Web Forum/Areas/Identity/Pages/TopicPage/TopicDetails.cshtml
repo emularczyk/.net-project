@@ -1,0 +1,35 @@
+﻿@page "/TopicDetails"
+@model Web_Forum.Views.Home.TopicPage.TopicDetails
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    @if (@Model.LoggedUser() != null)
+    {
+        <button class="nav-link text-dark" onclick="location.href='./AddTopic'">Add topic</button>
+    }
+</div>
+
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+        @if (Model.Topic != null)
+        {
+                <h1>@Model.Topic.title </h1>
+                <div class="card mb-2 shadow-sm">
+                    <p>@Model.Topic.content</p>
+                </div>
+                if (Model.Comments != null)
+                {
+                    foreach (var comment in Model.Comments)
+                    {
+                        <div class="card mb-2 shadow-sm">
+                            <small class="text-muted">@comment.content</small>
+                        </div>
+                    }
+                }
+        }
+        </div>
+    </div>
+</div>

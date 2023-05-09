@@ -5,13 +5,13 @@ using Web_Forum.Models;
 
 namespace Web_Forum.Views.Home.TopicPage
 {
-    public class IndexModel: PageModel
+    public class TopicList: PageModel
     {
         private readonly IdentityApplicationDbContext db;
         private readonly ILogger<IndexModel> logger;
         public string? loggedUser;
 
-        public IndexModel(ILogger<IndexModel> logger, IdentityApplicationDbContext db)
+        public TopicList(ILogger<IndexModel> logger, IdentityApplicationDbContext db)
         {
             this.logger = logger;
             this.db = db;
