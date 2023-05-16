@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using Web_Forum.Data;
@@ -32,17 +33,29 @@ namespace Web_Forum.Views.Home.TopicPage
 
         public IList<Topic>? Topics { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
             User user = await db.User.SingleOrDefaultAsync(user => 
                 user.UserName == HttpContext.Session.GetString("UserName"));
+
+            if (user == null)
+            {
+                return RedirectToPage("../Account/Login");
+            }
+
             Topics = await db.Topic
                 .Where(t => t.user_id == user.Id)
                 .ToListAsync();
+            return Page();
         }
 
-        public async Task<Microsoft.AspNetCore.Mvc.RedirectToPageResult> OnPostAsync(int id)
+        public async Task<RedirectToPageResult> OnPostAsync(int id)
         {
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                return RedirectToPage("../Account/Login");
+            }
+
            Topic deletedTopic = await db.FindAsync<Topic>(id);
             if (deletedTopic != null)
             {

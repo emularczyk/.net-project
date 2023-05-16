@@ -50,8 +50,13 @@ namespace Web_Forum.Views.Home.TopicPage
             public string Content { get; set; }
         }
 
-        public async Task OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                return RedirectToPage("../Account/Login");
+            }
+
             if (id != null)
             {
                 Topic editedTopic = await db.FindAsync<Topic>(id);
@@ -66,10 +71,16 @@ namespace Web_Forum.Views.Home.TopicPage
             {
                 TempData["EditedTopicId"] = -1;
             }
+            return Page();
         }
 
         public async Task<IActionResult> OnPost()
         {
+            if (HttpContext.Session.GetString("UserName") == null)
+            {
+                return RedirectToPage("../Account/Login");
+            }
+
             if (Input != null)
             {
                 User user = await db.User.SingleOrDefaultAsync(user => user.UserName == HttpContext.Session.GetString("UserName"));

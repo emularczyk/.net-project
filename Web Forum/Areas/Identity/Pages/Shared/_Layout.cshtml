@@ -27,15 +27,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" href="./TopicList">Topics</a>
                         </li>
-                        <div>
                             @if (@Model.LoggedUser() != null)
                             {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="./OwnTopicList">Own Topics</a>
                             </li>
                             }
-                        </div>
-                       
                     </ul>
                 </div>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
