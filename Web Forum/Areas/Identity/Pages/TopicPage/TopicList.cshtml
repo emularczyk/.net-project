@@ -1,0 +1,35 @@
+﻿@page "/TopicList"
+@model Web_Forum.Views.Home.TopicPage.TopicList
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Topics</h1>
+
+<div>
+    @if (@Model.LoggedUser() != null)
+    {
+        <button class="nav-link text-dark" onclick="location.href='./AddTopic'">Add topic</button>
+    }
+</div>
+
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            @if (Model.Topics != null)
+            {
+                foreach (var topic in Model.Topics)
+                {
+                <div class="card mb-4 shadow-sm">
+                     <h3> @topic.title </h3>
+                     <div class="card-body">
+                         <small class = "text-muted">@topic.content</small>
+                       </div>
+                </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
