@@ -49,20 +49,26 @@ namespace Web_Forum.Views.Home.TopicPage
             return Page();
         }
 
-        public async Task<RedirectToPageResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnGetDelete(string id)
         {
+            int topicId = int.Parse(id);
             if (HttpContext.Session.GetString("UserName") == null)
             {
                 return RedirectToPage("../Account/Login");
             }
+            await DeleteTopicAsync(topicId);
 
-           Topic deletedTopic = await db.FindAsync<Topic>(id);
+            return RedirectToPage("./OwnTopicList");
+        }
+
+        private async Task DeleteTopicAsync(int id)
+        {
+            Topic deletedTopic = await db.FindAsync<Topic>(id);
             if (deletedTopic != null)
             {
                 db.Topic.Remove(deletedTopic);
                 db.SaveChanges();
             }
-            return RedirectToPage("./OwnTopicList");
         }
     }
 }

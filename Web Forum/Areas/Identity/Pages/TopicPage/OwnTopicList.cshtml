@@ -38,13 +38,16 @@
                     <td width="20%">
                         <form method="get" asp-page="./AddTopic">
                             <input type="hidden" name="id" value="@topic.id" />
-                            <button type="submit" class="nav-link text-dark">Edit</button>
+                            <button type="submit" class="btn btn-primary">Edit</button>
                         </form>
                     </td>
                     <td width="20%">
                         <form id="OnDelete" method="post">
                             <input type="hidden" name="id" value="@topic.id" />
-                            <button id="OnDelete" type="submit" class="nav-link text-dark">Delete</button>
+                            <a class="btn btn-primary" role="button"
+                               onclick="DisplayConfirmDeleteModal('@topic.id')">
+                                Delete
+                            </a>
                         </form>
                     </td>
                 </tr>
@@ -54,7 +57,55 @@
 </table>
 
 <div>
-    <button class="nav-link text-dark" onclick="location.href='./AddTopic'">Add topic</button>
+    <button class="btn btn-primary" onclick="location.href='./AddTopic'">Add topic</button>
 </div>
+
+<div id="deleteModal" class="modal fade" role='dialog'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning" style="padding:5px;">
+                <h4 class="modal-title">Confirm Delete </h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="TopicIdToDelete" class="form-control" />
+                <p>Do You really want to delete this topic ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x"></i> Cancel</button>
+                <button type="button" class="btn btn-danger" id="btnDelete"><i class="bi bi-x"></i> Delete </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnDelete").on("click", function () {
+                let topicId = $("#TopicIdToDelete").val();
+                let UrlHandler = "/OwnTopicList/?handler=Delete";
+                $.ajax({
+                    url: UrlHandler,
+                    type: 'GET',
+                    data: { id: topicId },
+                    success: function (data) {
+                        if (data === "ok") {
+                            $("#deleteModal").modal('hide');
+                            window.location.reload();
+                        }
+                        window.location.reload();
+
+                    }
+                });
+            });
+        });
+
+        function DisplayConfirmDeleteModal(topicId) {
+            $("#TopicIdToDelete").val(topicId);
+            $("#deleteModal").modal('show');
+        }
+    </script>
+}
 
 
