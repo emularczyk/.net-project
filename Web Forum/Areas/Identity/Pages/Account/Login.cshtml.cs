@@ -15,14 +15,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Web_Forum.Models;
-<<<<<<< HEAD
-<<<<<<< HEAD
 using Microsoft.AspNetCore.Http;
-=======
->>>>>>> c782a94 (Login and register functionality and fix database and models)
-=======
 using Microsoft.AspNetCore.Http;
->>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
 
 namespace Web_Forum.Areas.Identity.Pages.Account
 {

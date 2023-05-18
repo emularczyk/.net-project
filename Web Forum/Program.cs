@@ -18,10 +18,6 @@ builder.Services.AddDbContext<IdentityApplicationDbContext>(options => options.U
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
@@ -31,11 +27,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-<<<<<<< HEAD
-=======
->>>>>>> c782a94 (Login and register functionality and fix database and models)
-=======
->>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,41 +37,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-//app.UseHttpsRedirection();
->>>>>>> c782a94 (Login and register functionality and fix database and models)
-=======
->>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-<<<<<<< HEAD
-<<<<<<< HEAD
 app.UseSession();
-=======
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
->>>>>>> c782a94 (Login and register functionality and fix database and models)
-=======
-app.UseSession();
->>>>>>> 785c7ff (Set up user's session and clean up the project's files.)
 
 app.MapRazorPages();
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapRazorPages();
-    endpoints.MapControllerRoute(
-        name: "delete",
-        pattern: "/TopicPage/OwnTopicList/Delete/{id}",
-        defaults: new { controller = "TopicPage", action = "OnGetDelete" });
-});
 
 app.Run();
