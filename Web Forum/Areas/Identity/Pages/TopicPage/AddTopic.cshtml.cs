@@ -45,7 +45,7 @@ namespace Web_Forum.Views.Home.TopicPage
             public string Title { get; set; }
 
             [DataType(DataType.Text)]
-            [StringLength(2000, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 0)]
+            [StringLength(2000, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
             [Display(Name = "Content")]
             public string Content { get; set; }
         }
@@ -84,29 +84,41 @@ namespace Web_Forum.Views.Home.TopicPage
             if (Input != null)
             {
                 User user = await db.User.SingleOrDefaultAsync(user => user.UserName == HttpContext.Session.GetString("UserName"));
-                int editedTopicId =  int.Parse(TempData["EditedTopicId"].ToString());
-                if (editedTopicId != -1)
+                int editedTopicId = int.Parse(TempData["EditedTopicId"].ToString());
+                if(user != null)
                 {
-                    Topic editedTopic = await db.FindAsync<Topic>(editedTopicId); 
-                    editedTopic.title = Input.Title;
-                    editedTopic.content = Input.Content;
-                    editedTopic.user_id = user.Id;
-                    db.SaveChanges();
-                    return RedirectToPage("./OwnTopicList");
-                }
-                else if (user != null)
-                {
-                    Topic topic = new Topic()
+                    if (editedTopicId != -1)
                     {
-                        title = Input.Title,
-                        content = Input.Content,
-                        user_id = user.Id
-                    };
-                    db.Topic.Add(topic);
-                    db.SaveChanges();
+                        await EditTopic(user, editedTopicId);
+                    }
+                    else 
+                    {
+                        await CreateTopic(user);
+                    }
                 }
             }
             return RedirectToPage("./OwnTopicList");
+        }
+
+        private async Task EditTopic(User user, int editedTopicId)
+        {
+            Topic editedTopic = await db.FindAsync<Topic>(editedTopicId);
+            editedTopic.title = Input.Title;
+            editedTopic.content = Input.Content;
+            editedTopic.user_id = user.Id;
+            db.SaveChanges();
+        }
+
+        private async Task CreateTopic(User user)
+        {
+            Topic topic = new Topic()
+            {
+                title = Input.Title,
+                content = Input.Content,
+                user_id = user.Id
+            };
+            db.Topic.Add(topic);
+            db.SaveChanges();
         }
     }
 }

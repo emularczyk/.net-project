@@ -74,4 +74,13 @@ app.UseSession();
 
 app.MapRazorPages();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapControllerRoute(
+        name: "delete",
+        pattern: "/TopicPage/OwnTopicList/Delete/{id}",
+        defaults: new { controller = "TopicPage", action = "OnGetDelete" });
+});
+
 app.Run();
